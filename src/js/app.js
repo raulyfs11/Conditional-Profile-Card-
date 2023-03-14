@@ -30,20 +30,15 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // social media position
+  if (variables.twitter === null) variables.twitter;
+  if (variables.github === null) variables.github;
+  if (variables.linkedin === null) variables.linkedin;
+  if (variables.instagram === null) variables.instagram;
 
-  //social media
-  if (variables.twitter !== null) variables.twitter;
-  if (variables.github !== null) variables.github;
-  if (variables.linkedin !== null) variables.linkedin;
-  if (variables.instagram !== null) variables.instagram;
+  if (variables.name == null) variables.name = "John";
+  if (variables.lastname == null) variables.lastname = " Doe";
 
-  //name & last name
-  if (variables.name == null) variables.name = "Your name";
-  if (variables.lastname == null) variables.lastname = " & Last name";
-
-  //role
-  if (variables.role == null) variables.role = "<h2> Your role</h2>";
+  if (variables.role == null) variables.role = "<h2>Web Developer</h2>";
   else if (variables.role == "Floor Planner")
     variables.role = "<h2>Floor Planner</h2>";
   else if (variables.role == "Thecnical Writer")
@@ -51,21 +46,18 @@ function render(variables = {}) {
   else if (variables.role == "Web Developer")
     variables.role = "<h2> Web Developer</h2>";
 
-  // city
-  if (variables.city == null) variables.city = "Your city";
+  if (variables.city == null) variables.city = "Miami";
   else if (variables.city == "Miami") variables.city = "Miami";
   else if (variables.city == "Munich") variables.city = "Munich";
   else if (variables.city == "Caracas") variables.city = "Caracas";
   else if (variables.city == "Toronto") variables.city = "Toronto";
 
-  // country
-  if (variables.country == null) variables.country = "Your country";
+  if (variables.country == null) variables.country = "USA";
   else if (variables.country == "USA") variables.country = "USA";
   else if (variables.country == "Germany") variables.country = "Germany";
   else if (variables.country == "Canada") variables.country = "Canada";
   else if (variables.country == "Venezuela") variables.country = "Venezuela";
 
-  // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
           ${cover}
           <img src="${variables.avatarURL}" class="photo" />
@@ -91,9 +83,10 @@ window.onload = function() {
     includeCover: true,
     // this is the url of the image that will used as background for the profile cover
     background:
-      "https://t4.ftcdn.net/jpg/02/69/82/11/360_F_269821180_UAEWi4xE7JhAqOUvOD1JoBLP0YDvqFvA.jpg",
+      "https://images.template.net/wp-content/uploads/2015/08/22123910/HD-Wallpapers11-111.jpg",
     // this is the url for the profile avatar
-    avatarURL: "https://cdn.onlinewebfonts.com/svg/img_569204.png",
+    avatarURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3n-McB6rto-bvwQF7wWsNH0N0nOoQrp8G60h_Jx7wFQ&usqp=CAU&ec=48600113",
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
@@ -107,7 +100,7 @@ window.onload = function() {
     country: null,
     city: null
   };
-  render(window.variables); //render the card for the first time
+  render(window.variables);
 
   document.querySelectorAll(".picker").forEach(function(elm) {
     elm.addEventListener("change", function(e) {
